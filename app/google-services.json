@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "446328756930",
+    "project_id": "registroclientesdmr",
+    "storage_bucket": "registroclientesdmr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446328756930:android:2bb6e1643210c786c5795b",
+        "android_client_info": {
+          "package_name": "com.example.registroclientesdmr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446328756930-ib4o9gnqm8p71ckhhc6a2r6oqf5u4vkj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDadd0G1EMZfvjFxMmQDJg6ACFMbXHtxAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446328756930-ib4o9gnqm8p71ckhhc6a2r6oqf5u4vkj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

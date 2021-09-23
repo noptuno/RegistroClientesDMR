@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".principal.RegistroClientes">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_Lista"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Completo"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:hint="Nombre Completo"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Empresa"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_empresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:hint="Empresa"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Cargo"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_cargo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:hint="Cargo"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Telefono"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="phone"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Email"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:hint="Correo Electronico"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Nota"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_nota"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Notas"
+                android:inputType="textMultiLine" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_imprimir"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:text="Imprimir"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_Atras"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_modificar" />
+
+    <Button
+        android:id="@+id/btn_Atras"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#9C0A0A"
+        android:text="Cancelar"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_imprimir"
+        app:layout_constraintTop_toTopOf="@+id/btn_imprimir" />
+
+    <Button
+        android:id="@+id/btn_Lista"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:text="Lista"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_imprimir"
+        app:layout_constraintEnd_toStartOf="@+id/btn_guardar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_nuevo" />
+
+    <Button
+        android:id="@+id/btn_guardar"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Guardar"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_Lista"
+        app:layout_constraintTop_toTopOf="@+id/btn_Lista" />
+
+    <Button
+        android:id="@+id/btn_nuevo"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="#FF9800"
+        android:text="Nuevo"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_Lista"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_modificar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_Lista" />
+
+    <Button
+        android:id="@+id/btn_modificar"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:text="Modificar"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_imprimir"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_imprimir" />
+</androidx.constraintlayout.widget.ConstraintLayout>
