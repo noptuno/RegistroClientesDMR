@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import com.example.registroclientesdmr.R;
 import com.example.registroclientesdmr.adapters.AdapterCliente;
 import com.example.registroclientesdmr.clase.Cliente;
+import com.google.android.gms.dynamic.IFragmentWrapper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,7 +41,7 @@ public class ListaClientes extends AppCompatActivity {
     private ProgressDialog dialog;
 
 private EditText filtro;
-    private Button cancelar;
+    private Button cancelar, btnlistar;
     private AdapterCliente adapter;
     private FirebaseAuth firebaseauth;
     private FirebaseFirestore firebasefirestore;
@@ -47,6 +50,7 @@ private EditText filtro;
 
     private String emailusaurio;
 
+ private Cliente clienteSeleccionado = null;
 
     ArrayList<Cliente> list = new ArrayList<>();
     @Override
@@ -67,6 +71,8 @@ private EditText filtro;
 
                 String ID = note.getId();
                 cliente_seleccionado.setText(note.getEmail());
+                clienteSeleccionado = note;
+
               //  idtablaserie.setText(note.getId());
                // numeroserie.setText(note.getNserie());
             }
@@ -82,6 +88,7 @@ private EditText filtro;
 
     private void botones() {
 
+        btnlistar = findViewById(R.id.btn_detalle);
 
         filtro = findViewById(R.id.et_filtro);
 
@@ -120,6 +127,22 @@ private EditText filtro;
             }
         });
 
+        btnlistar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (cliente_seleccionado!= null){
+
+/*
+                    Intent i = new Intent(ListaClientes.this, RegistroClientes.class);
+                    i.putExtra("sampleObject", (Serializable) cliente_seleccionado);
+                    startActivity(i);
+*/
+                }
+
+
+            }
+        });
 
     }
 

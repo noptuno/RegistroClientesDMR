@@ -135,12 +135,12 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btn_imprimir"
+        android:id="@+id/btn_eliminar"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:enabled="false"
-        android:text="Imprimir"
+        android:text="Eliminar"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_Atras"
@@ -157,8 +157,8 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_imprimir"
-        app:layout_constraintTop_toTopOf="@+id/btn_imprimir" />
+        app:layout_constraintStart_toEndOf="@+id/btn_eliminar"
+        app:layout_constraintTop_toTopOf="@+id/btn_eliminar" />
 
     <Button
         android:id="@+id/btn_Lista"
@@ -167,7 +167,7 @@
         android:layout_marginBottom="8dp"
         android:text="Lista"
         android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_imprimir"
+        app:layout_constraintBottom_toTopOf="@+id/btn_eliminar"
         app:layout_constraintEnd_toStartOf="@+id/btn_guardar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_nuevo" />
@@ -207,8 +207,8 @@
         android:enabled="false"
         android:text="Modificar"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_imprimir"
+        app:layout_constraintEnd_toStartOf="@+id/btn_eliminar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_imprimir" />
+        app:layout_constraintTop_toTopOf="@+id/btn_eliminar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

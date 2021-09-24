@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.registroclientesdmr.MainActivity;
@@ -39,9 +38,9 @@ public class RegistroClientes extends AppCompatActivity {
     private FirebaseFirestore firebasefirestore;
     private FirebaseUser firebaseuser;
 
-    private Button cancelar,btnnuevo,btnguardar,btnmodificar,btnlista,btnimprimir;
+    private Button cancelar,btnnuevo,btnguardar,btnmodificar,btnlista,btneliminar;
 
-    private String email_usuario,fecha,nombre,empresa,cargo,telefono,email,nota;
+    private String idcliente,email_usuario,fecha,nombre,empresa,cargo,telefono,email,nota;
 
     private EditText etnombre,etempresa,etcargo,ettelefono,etemail,etnota;
 
@@ -51,6 +50,33 @@ public class RegistroClientes extends AppCompatActivity {
         setContentView(R.layout.activity_registro_clientes);
         botones();
         initFireBase();
+        //recibirClase();
+    }
+
+    private void recibirClase() {
+
+
+        Intent i = getIntent();
+
+        if (!i.equals(null)){
+            Cliente cliente = (Cliente) i.getSerializableExtra("sampleObject");
+            idcliente = cliente.getId();
+            etnombre.setText(cliente.getNombre());
+            etempresa.setText(cliente.getEmpresa());
+            etcargo.setText(cliente.getCargo());
+            ettelefono.setText(cliente.getTelefono());
+            etemail.setText(cliente.getEmail());
+            etnota.setText(cliente.getNota());
+            btnnuevo.setEnabled(true);
+            btnguardar.setEnabled(false);
+            btnmodificar.setEnabled(true);
+            btnlista.setEnabled(true);
+            btneliminar.setEnabled(true);
+            cancelar.setEnabled(true);
+        }
+
+
+
     }
 
 
@@ -68,6 +94,7 @@ public class RegistroClientes extends AppCompatActivity {
         temp.put("nota", cliente.getNota().toUpperCase());
         temp.put("email_usuario", cliente.getEmail_usuario().toUpperCase());
         temp.put("fecha_registro", cliente.getFecha_registro().toUpperCase());
+
 
 
         firebasefirestore.collection("TABLA_CLIENTES")
@@ -93,6 +120,39 @@ public class RegistroClientes extends AppCompatActivity {
                 });
     }
 
+
+    public void Eliminar() {
+
+        EnableDialog(true,"Modificar");
+
+            firebasefirestore.collection("TABLA_CLIENTES").document(idcliente)
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            showToast("Modificado");
+                            restablecer();
+                            EnableDialog(false,"Modificar");
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            showToast("Hubo un error de conexion");
+                            EnableDialog(false,"Registro");
+                        }
+                    });
+
+        restablecer();
+        }
+
+
+
+
+
+
     private void showToast(String mensaje) {
 
         Toast.makeText(RegistroClientes.this, mensaje, Toast.LENGTH_SHORT).show();
@@ -100,6 +160,7 @@ public class RegistroClientes extends AppCompatActivity {
 
     private void restablecer() {
 
+        idcliente = null;
         etnombre.setText("");
         etempresa.setText("");
         etcargo.setText("");
@@ -110,10 +171,10 @@ public class RegistroClientes extends AppCompatActivity {
         btnguardar.setEnabled(true);
         btnmodificar.setEnabled(false);
         btnlista.setEnabled(true);
-        btnimprimir.setEnabled(false);
+        btneliminar.setEnabled(false);
         cancelar.setEnabled(true);
 
-        etnombre.requestFocus();
+        //etnombre.requestFocus();
 
     }
 
@@ -151,7 +212,7 @@ public class RegistroClientes extends AppCompatActivity {
         btnguardar = findViewById(R.id.btn_guardar);
         btnmodificar = findViewById(R.id.btn_modificar);
         btnlista = findViewById(R.id.btn_Lista);
-        btnimprimir = findViewById(R.id.btn_imprimir);
+        btneliminar = findViewById(R.id.btn_eliminar);
         cancelar = findViewById(R.id.btn_Atras);
 
 
@@ -189,6 +250,19 @@ public class RegistroClientes extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                nombre = etnombre.getText().toString();
+                empresa= etempresa.getText().toString();
+                cargo= etcargo.getText().toString();
+                telefono= ettelefono.getText().toString();
+                email= etemail.getText().toString();
+                nota= etnota.getText().toString();
+
+                if (!email_usuario.isEmpty() && !nombre.isEmpty()){
+                    Cliente cliente = new Cliente(idcliente,nombre,empresa,cargo,telefono,email,nota,email_usuario,fecha);
+                  //  registrar_firebase(cliente);
+                }
+
+
 
             }
         });
@@ -197,14 +271,18 @@ public class RegistroClientes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                Intent ints = new Intent(RegistroClientes.this, ListaClientes.class);
+                startActivity(ints);
+                finish();
 
             }
         });
-        btnimprimir.setOnClickListener(new View.OnClickListener() {
+        btneliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+            if (idcliente!=null){
+                Eliminar();
+            }
 
 
             }
