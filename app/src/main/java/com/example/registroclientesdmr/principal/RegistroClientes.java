@@ -3,13 +3,16 @@ package com.example.registroclientesdmr.principal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.registroclientesdmr.MainActivity;
 import com.example.registroclientesdmr.R;
@@ -27,6 +30,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistroClientes extends AppCompatActivity {
+
+    private Handler m_handler = new Handler(); // Main thread
+    private ProgressDialog dialog;
+
 
     private FirebaseAuth mAut;
     private FirebaseFirestore firebasefirestore;
@@ -49,6 +56,8 @@ public class RegistroClientes extends AppCompatActivity {
 
     private void registrar_firebase(Cliente cliente) {
 
+        EnableDialog(true,"Registro");
+
         Map<String, Object> temp = new HashMap<>();
 
         temp.put("nombre", cliente.getNombre().toUpperCase());
@@ -66,7 +75,11 @@ public class RegistroClientes extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+
                         Log.d("TAG", "DocumentSnapshot written with ID: " + documentReference.getId());
+                        showToast("Registro Exitoso");
+                        restablecer();
+                        EnableDialog(false,"Registro");
 
                     }
                 })
@@ -74,8 +87,34 @@ public class RegistroClientes extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("TAG", "Error adding document", e);
+                        showToast("Hubo un error de conexion");
+                        EnableDialog(false,"Registro");
                     }
                 });
+    }
+
+    private void showToast(String mensaje) {
+
+        Toast.makeText(RegistroClientes.this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    private void restablecer() {
+
+        etnombre.setText("");
+        etempresa.setText("");
+        etcargo.setText("");
+        ettelefono.setText("");
+        etemail.setText("");
+        etnota.setText("");
+        btnnuevo.setEnabled(true);
+        btnguardar.setEnabled(true);
+        btnmodificar.setEnabled(false);
+        btnlista.setEnabled(true);
+        btnimprimir.setEnabled(false);
+        cancelar.setEnabled(true);
+
+        etnombre.requestFocus();
+
     }
 
 
@@ -181,6 +220,33 @@ public class RegistroClientes extends AppCompatActivity {
         });
 
 
+    }
+
+
+
+    private void createCancelProgressDialog(String title, String message) {
+
+        dialog = new ProgressDialog(this);
+        dialog.setTitle(title);
+        dialog.setMessage(message);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    public void EnableDialog(final boolean value, final String mensaje) {
+        m_handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (value) {
+                    createCancelProgressDialog("Cargando...", mensaje);
+
+                } else {
+                    if (dialog != null)
+                        dialog.dismiss();
+                }
+            }
+        });
     }
 
 

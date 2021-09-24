@@ -51,7 +51,7 @@
         android:id="@+id/btn_detalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Detalle"
+        android:text="Ver Detalle"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancelar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,17 +69,27 @@
         app:layout_constraintStart_toEndOf="@+id/btn_detalle" />
 
     <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Cliente Seleccionado: "
+        app:layout_constraintBottom_toBottomOf="@+id/txt_NombreCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_NombreCliente" />
+
+    <TextView
         android:id="@+id/txt_NombreCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="David Garcia"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/textView9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,15 +2,15 @@ package com.example.registroclientesdmr.clase;
 
 public class Cliente {
 
-    String id = "";
-    String nombre = "";
-    String empresa = "";
-    String cargo = "";
-    String telefono = "";
-    String email = "";
-    String nota = "";
-    String email_usuario = "";
-    String fecha_registro;
+    String id = "null";
+    String nombre = "null";
+    String empresa = "null";
+    String cargo = "null";
+    String telefono = "null";
+    String email = "null";
+    String nota = "null";
+    String email_usuario = "null";
+    String fecha_registro = "null";
 
     public Cliente() {
     }
